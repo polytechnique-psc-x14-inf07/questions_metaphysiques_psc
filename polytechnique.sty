@@ -430,15 +430,26 @@
 }
 
 
-\if@ndv
-\newcommand{\suggest}[1]{{\color{red}$\rightarrow$\itshape\bfseries #1}}
-\newcommand{\add}[1]{{\color{red}[ajout du #1]}}
-\newcommand{\insist}[1]{{\color{red}\itshape #1}}
-\else
-\newcommand{\suggest}[1]{}
-\newcommand{\add}[1]{}
-\newcommand{\insist}[1]{#1}
-\fi
+\newcounter{question}
+\newcommand{\ask}[2][Un connard d'anonyme]{
+    
+    \noindent\textcolor{bleu303}{\rule{0.5\textwidth}{0.3mm}}\vspace*{-5mm}
+    \stepcounter{question}
+    \paragraph{\itshape\color{bleu303} Question \arabic{question}. } {\itshape #2}
+
+    {\hspace{\fill} \color{rouge485}\itshape -- #1}
+
+}
+\newcommand{\answer}[2][Un connard d'anonyme]{
+    
+    \begin{flushright}
+    \begin{minipage}{0.75\textwidth}
+    \setlength{\parindent}{0cm}
+    \paragraph{\color{bleu303} Réponse de #1: } #2
+    \end{minipage}
+    \end{flushright}
+
+}
 
 \endinput
 

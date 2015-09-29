@@ -1,0 +1,63 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{ifthen} \usepackage{amsmath} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage[pagenumber]{polytechnique}
+\usepackage[pdftex=true,
+			colorlinks=true,
+			linkcolor=black,
+			filecolor=red,
+			urlcolor=blue,
+			bookmarks=true,
+			bookmarksopen=true]{hyperref}
+
+
+\title{Questions métaphysiques}
+\author{Pierrick \textsc{Allègre} \\
+		Gustavo \textsc{Castro} \\
+		Clément \textsc{Durand} \\
+		Felipe \textsc{Garcia} \\
+		Alexandre \textsc{Harry} \\
+		Francisco \textsc{Ribeiro Eckhardt Serpa} \\
+		Pierre-Alexandre \textsc{Thomas} \\
+		Guillaume \textsc{Vizier}}
+\subtitle{Projet Scientifique Collectif}
+\date{\today}
+
+\begin{document}
+%\pagestyle{} %ou plain, headings, empty
+\maketitle
+%\tableofcontents
+
+%\noindent\textcolor{bleu303}{\rule{\textwidth}{\epaisseurtrait}}
+
+Pour ajouter une question, mettre dans le code :
+\begin{verbatim}
+\ask[<auteur>]{<question>}
+\end{verbatim}
+
+Pour répondre à une question, mettre dans le code juste après la question :
+\begin{verbatim}
+\answer[<auteur>]{<réponse>}
+\end{verbatim}
+
+N'hésitez pas non plus à classer vos questions par catégorie si ça vous tente \verb!\o/!.
+
+\ask[Clément]{Et alors ça donne quoi ?}
+
+\answer[Clément]{Voilà, on peut dire que, d'une certaine façon et si l'on fait preuve d'une certaine tolérance, ça donne quelque chose de pas trop mal !
+
+Il se trouve que l'on peut même écrire plein de trucs !}
+
+\clearpage
+
+
+
+
+\end{document}
