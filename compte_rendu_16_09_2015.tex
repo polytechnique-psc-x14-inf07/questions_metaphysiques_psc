@@ -1,0 +1,112 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{ifthen} \usepackage{amsmath} \usepackage{amsfonts} \usepackage{amssymb} \usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{multicol}
+\usepackage{polytechnique}
+\usepackage[pdftex=true,
+			colorlinks=true,
+			linkcolor=black,
+			filecolor=red,
+			urlcolor=blue,
+			bookmarks=true,
+			bookmarksopen=true]{hyperref}
+
+
+\title{Réunion PSC du 16 septembre 2015}
+\author{Pierrick \textsc{Allègre} \\
+		Gustavo \textsc{Castro} \\
+		Clément \textsc{Durand} \\
+		Felipe \textsc{Garcia} \\
+		Alexandre \textsc{Harry} \\
+		Francisco \textsc{Ribeiro Eckhardt Serpa} \\
+		Pierre-Alexandre \textsc{Thomas} \\
+		Guillaume \textsc{Vizier}}
+\subtitle{Compte-rendu}
+\date{\today}
+
+\begin{document}
+%\pagestyle{} %ou plain, headings, empty
+\maketitle
+\tableofcontents\clearpage
+
+{\itshape Réunion en présence du tuteur de stage, Thomas Clausen.}
+
+Sujets à aborder :
+\begin{itemize}
+	\item Périodes de rendez-vous (horaires)
+	\item Ouvrages de référence (bibliographie)
+	\item Étapes du PSC (plus précises)
+	\item Par quoi commencer
+	\item Le projet actuel est-il envisageable ?
+\end{itemize}
+
+\section{Première étape : the hacking experience}
+
+	\subsection{Exemples de failles constatées/exploitées}
+	
+	Après de multiples demandes d'autorisation en tout genre, \href{https://www.whatsapp.com/?l=fr}{WhatsApp} demande l'accès au carnet d'adresses et le récupère.
+	
+	Au démarrage de nombreux téléphones, une quantité impressionnante d'informations sont uploadées vers Google, qu'on le demande ou non.
+	
+	Certaines applications récupèrent des informations sur le téléphone, y compris des informations qui ne leur appartiennent pas : les espaces de stockage des applications ne sont pas suffisamment encapsulés/compartimentés.
+	
+	\subsection{Premier objectif du groupe}
+	
+	Le premier but est de comprendre quelles sont les fuites en temps normal, puis éventuellement celles qui peuvent être provoquées.
+	
+		\subsubsection{Fuites en temps normal}
+		
+		Très peu de sources mentionnent l'écoute des fuites naturellement présentes : le logiciel \href{https://www.wireshark.org/}{Wireshark} écoute le trafic WiFi et récupère tous les paquets IP échangés. Rien qu'à partir de cela, une analyse basique permet d'avoir beaucoup d'informations sur ce qui se passe sur le réseau. Le protocole DNS étant non chiffré on peut connaître les sites consultés, mais on peut aussi, à partir d'informations non cryptées dans les paquets cryptés, utiliser des informations (adresses IP, ports utilisés, taille des paquets, etc.) pour reconstituer une partie non négligeable de l'activité.
+		
+		Programmer nous même un logiciel de capture du trafic n'est apparemment pas trop compliqué, et se ferait de préférence en C\footnote{Notons que le code source de Wireshark est disponible \href{https://1.eu.dl.wireshark.org/src/wireshark-1.12.7.tar.bz2}{ici}, ainsi que la \href{https://www.wireshark.org/download/docs/user-guide-a4.pdf}{documentation} et la \href{https://www.wireshark.org/docs/wsug_html_chunked}{documentation en ligne}.}.
+		
+		En se renseignant sur les protocoles, on peut avancer dans l'analyse des données écoutées. Il est intéressant de savoir rassembler les trames reçues en un paquet IP, puis d'essayer à partir d'analyse d'une grande quantité de données d'identifier le type de trafic, etc.
+		
+		Il est envisageable de contacter Benjamin Smith à propos de cryptologie, pour savoir ce qui peut être décrypté ou non.
+		
+		\subsubsection{Fuites que l'on peut provoquer}
+		
+		\paragraph{DNS poisoning.} Falsifier un paquet IP pour se faire passer pour le serveur DNS. On peut ainsi modifier la réponse et se faire passer pour n'importe qui, envoyer n'importe quel fichier.
+		
+	\subsection{Vers le second semestre}
+	
+	On aimerait coder quelque chose qui permet de contrôler les informations émises par les applications, et éventuellement de les crypter.
+	
+	Par exemple : capturer le trafic du téléphone pour se faire une idée de l'usage normal, puis repérer les anomalies pour les bloquer.
+	
+\section{Choses à faire}
+
+	\subsection{Rédaction de la proposition détaillée}
+	
+	\textbf{\color{red} Pour le samedi 19 septembre au plus tard :} avoir un brouillon de chaque partie.
+	
+	Préciser ensuite d'ici lundi 21 septembre.
+	
+	Le but est que Lundi 21 septembre, la proposition soit \emph{\color{red} terminée}.
+	
+	\subsection{Se renseigner}
+	
+	\textbf{\itshape\color{red} Ces items peuvent aussi constituer des éléments de bibliographie et être utile pour l'état de l'art.}
+	
+	Éléments sur lesquels il faut se renseigner :
+	\begin{itemize}
+		\item Programmation \\ \emph{C,Java,Javascript,Assembleur éventuellement, etc.}
+		\item Protocoles \\ \emph{SSL, SSH, TCP, UDP, DNS, HTTP, etc.}
+		\item Écoute de réseau \\ \emph{Wireshark, etc.}
+		\item Hacking actif \\ \emph{DNS poisoning}
+		\item Filtrage, compartimentage \\ \emph{Sandboxing, Firewalling}
+		\item Modèles de sécurité sur android
+		\item Conférences de cybersécurité
+	\end{itemize}
+	
+	\subsection{\color{red} Important : compte-rendu}
+	
+	Demain, envoyez un mail (au moins à Guillaume, et si possible à moi aussi) pour dire où vous en êtes de la proposition détaillée. C'est vraiment important.
+
+\end{document}
